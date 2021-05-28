@@ -38,22 +38,25 @@ if(ch=='2'):
         print('Error:Unable to fetch data.')  
         mysqldb.close()#Connection Close  
 if(ch=='3'):
-
-    str="update emp set salary=salary+1000 where empid='%d'"
-    salary=int(input("Enter ID where you want to update salary:"))
-    args=(salary)
-    mycursor.execute(str % args)
-    mysqldb.commit() # Commit is used for your changes in the database  
-    print('Record updated successfully...')   
-    # rollback used for if any error  
-    mysqldb.rollback()  
-    mysqldb.close()#Connection Close 
+    try:
+        str="update emp set salary=salary+1000 where empid='%d'"
+        salary=int(input("Enter ID where you want to update salary:"))
+        args=(salary)
+        mycursor.execute(str % args)
+        mysqldb.commit() # Commit is used for your changes in the database  
+        print('Record updated successfully...')
+        # rollback used for if any error  
+    except:
+        mysqldb.rollback()  
+        mysqldb.close()#Connection Close 
 if(ch=='4'):
-    no=int(input("Enter empid to delete record:"))
-    delete_stmt = "DELETE FROM emp WHERE empid='%d'"
-    args = (no)
-
-    mycursor.execute(delete_stmt%args)#Execute SQL Query to detete a record   
-    mysqldb.commit() # Commit is used for your changes in the database  
-    print('Record deteted successfully...')  
-    mysqldb.close()#Connection Close  
+    try:
+        no=int(input("Enter empid to delete record:"))
+        delete_stmt = "DELETE FROM emp WHERE empid='%d'"
+        args = (no)
+        mycursor.execute(delete_stmt%args)#Execute SQL Query to detete a record   
+        mysqldb.commit() # Commit is used for your changes in the database  
+        print('Record deteted successfully...')  
+    except:
+        mysqldb.rollback()
+        mysqldb.close()#Connection Close  
