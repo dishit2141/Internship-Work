@@ -1,0 +1,51 @@
+<html>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <div class="container">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
+  <ul class="navbar-nav">
+    <li class="nav-item ">
+      <a class="nav-link" href="/index">Home</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/pass">Passwords</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/logout">Logout</a>
+    </li>
+    </ul>
+</nav>    
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Platform</th>
+      <th scope="col">Username</th>
+      <th scope="col">passwords</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>  
+  
+  
+  {% for s in secure %}
+  
+    <tr>
+      <th scope="row">{{ s.platform}}</th>
+      <td> {{ s.accname }}</td>
+      <td> {{ s.accpassword}}</td>
+      <td><a href="/decrypt?decryptid={{ s.accpassword }}">Decrypt</a>/<a href="/delt?deleteid={{ s.id }}">delete</a></td>"
+   
+    </tr>
+{% endfor %}    
+    
+    
+
+  
+</table>
+    
+   
+   
+    
+
+</html>
